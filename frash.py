@@ -2,13 +2,15 @@
 
 #frash
 
-def frash(string, length = 32, fractal = False):
+def frash(string, length = 32, fractal = False, one = '#', zero = ' '):
   '''Frash allows to hash a string using a unique fractal algorithm.
   
   Parameters:
      string - The string to hash.
      length - The length of the returned string (multiply it by 4 to obtain the quantity of bits on which the input string is hashed).
     fractal - When set to "True", displays the fractal that has been used to hash the input string.
+        one - The character representing a "1" in the visual fractal, only used if "fractal" is set to True.
+       zero - The character representing a "0" in the visual fractal, only used if "fractal" is set to True.
   '''
   initialBinaryChain = '' # Each character of the string coded on 7 bits.
   numberOfBits = 8 * length # The number of bits necessary to code `length` characters. It should be 4 bits for a character (from 0 to f) but the quantity is doubled to avoid the 245a-paradox (see note below).
@@ -61,9 +63,9 @@ def frash(string, length = 32, fractal = False):
     for line in lineList:
       for digit in line:
         if digit == 0:
-          print(' ',end='')
+          print(zero,end='')
         else:
-          print('#',end='')
+          print(one,end='')
       print() 
   
   return hashValue
